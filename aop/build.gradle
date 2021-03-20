@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+    id "io.freefair.aspectj.post-compile-weaving" version "4.1.4"  // For gradle > 5.6
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
+    compile 'org.aspectj:aspectjrt:1.8.13'
+}
+
+test {
+    useJUnitPlatform()
+}
