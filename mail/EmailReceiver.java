@@ -14,7 +14,7 @@ import javax.mail.search.FlagTerm;
 
 /**
  * SMTP: Dùng để gửi mail. PORT: 25, 465(SSL), 587(StartTLS)
- * IMAP: Dùng để nhận email. PORT: 143, 993(SSL), Máy chạm chỉ đồng bộ h => Server tốn tài nguyên
+ * IMAP: Dùng để nhận email. PORT: 143, 993(SSL), Máy chạm chỉ đồng bộ header => Server tốn tài nguyên
  * POP3: Dùng để nhận email. PORT: 110, 995(SSL), Máy chạm download toàn bộ email trên server(có thể để lại 1 bản).
  */
 public class EmailReceiver {
@@ -124,7 +124,6 @@ public class EmailReceiver {
             emailFolder.open(Folder.READ_WRITE);
         emailFolder.idle();
 
-//        Code bên dưới get đoạn email chưa đọc tuỳ theo giá trị của biến read.
 //        // search for all "unseen" messages
 //        Flags seen = new Flags(Flags.Flag.SEEN);
 //        FlagTerm unseenFlagTerm = new FlagTerm(seen, read);
