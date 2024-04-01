@@ -1,0 +1,28 @@
+- Default VPC open nó quá lớn về mặt bảo mật nó không tốt.
+- User data: luôn có command dầu tiên hướng dẫn shell: #!/bin/bash
+- Tạo thêm nhiều con mới từ config setting con cũ: Actions > Image and tempales > Launch more like this
+- Load balancer:
+    - Application load balancer(ALB): Hoạt động ở tầng 7 application mô hình OSI			- prefer
+    - Network load balancer(NLB): hoạt động ở tầng 4 network application load balancer	- performant
+    - Gateway load balancer:...
+- Schema Application load balancer (ELB):
+    - Internet facing: đi ra ngoài...
+    - Internal nội bộ
+- 1 ELB cos thể gắn tới nhiều AZ(chọn con nào, subnet nào mình sử dụng) trong 1 region
+    - Chọn security group cho ELB
+    - Chọn giao thức để lắng nghe > chọn Target group(1 nhóm ec2 instant, 1 nhóm ip..): có thể nằm ngoài aws vẫn có thể sử dụng
+    - Health check...
+    - Listeners and rules: cấu hình forward vào các target group nào, chú ý priority rule
+    - Network mapping: VPC and subnet
+    - Resource mapping: Nhìn thấy tổng quan luồng đi ntn, qua các rule nào -> chuyển tới target group nào và tới ec2 nào
+- Target group có tính năng:
+    - stickiness trong: Target group -> Attributes > Stickiness
+    - Monitoring instant: tổng quan của nhóm đó bao nhiêu request, thất bại bn, max bn instant..
+    - Trong target group sẽ nhìn đc tổng số lượng instant có trong đó.
+- Auto scaling group(ASG):
+    - Cần tạo launch template trước
+- Không lên lưu access key và private key s3 trên instant
+  => Lộ key => Ai cũng có thể dùng được nếu không grant quyền hợp lý => Dùng IAM role gán cho EC2 instant.
+  => Instances => Actions => Security => Modify IAM role.
+- Nếu access qua SSH, không nên lưu key tại bastion host, nên dùng forwarding SSH: ssh-add -K key.pem => ssh -A ubuntu@1.2.3.4 => ssh -A ubuntu@2.3.4.5
+- Gateway endpoint tạo miễn phí, interface endpoint tạo mất phí.
